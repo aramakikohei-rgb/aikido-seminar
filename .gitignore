@@ -3,3 +3,15 @@ dist
 *.log
 .DS_Store
 server/data/
+
+# Environment variables
+.env
+.env.local
+
+# Vercel
+.vercel
+
+# Local development database
+local.db
+local.db-shm
+local.db-wal

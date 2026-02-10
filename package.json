@@ -1,0 +1,23 @@
+{
+  "name": "aikido-seminar-tracker",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "seed": "tsx scripts/seed.ts",
+    "migrate": "tsx scripts/migrate-schema.ts"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.0",
+    "@vercel/node": "^5.1.8",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.2",
+    "@types/uuid": "^10.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
