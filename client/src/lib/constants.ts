@@ -1,0 +1,17 @@
+export const organizations = [
+  "Aikikai",
+  "USAF",
+  "FFAB",
+  "BAF",
+  "DAB",
+  "SAF",
+  "Yoshinkan",
+  "AAA",
+  "CAF",
+  "EAF",
+  "FIPA",
+  "FLAB",
+  "NZAF",
+  "ASA",
+  "Aikikai d'Italia",
+];
