@@ -28,14 +28,14 @@ export default function FilterBar({
   const hasActiveFilters = Object.values(filters).some((v) => v !== "");
 
   return (
-    <div className="flex flex-wrap items-end gap-3 mb-4">
+    <div className="grid grid-cols-[1fr_1fr_1fr_auto_auto] items-end gap-3 mb-4">
       <div className="grid gap-1">
         <label className="text-xs text-muted-foreground">Country</label>
         <Select
           value={filters.country || "_all"}
           onValueChange={(v) => setFilter("country", v === "_all" ? "" : v)}
         >
-          <SelectTrigger className="w-[150px]">
+          <SelectTrigger>
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
@@ -57,7 +57,7 @@ export default function FilterBar({
             setFilter("organization", v === "_all" ? "" : v)
           }
         >
-          <SelectTrigger className="w-[150px]">
+          <SelectTrigger>
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
@@ -72,29 +72,9 @@ export default function FilterBar({
       </div>
 
       <div className="grid gap-1">
-        <label className="text-xs text-muted-foreground">Level</label>
-        <Select
-          value={filters.level || "_all"}
-          onValueChange={(v) => setFilter("level", v === "_all" ? "" : v)}
-        >
-          <SelectTrigger className="w-[140px]">
-            <SelectValue placeholder="All" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="_all">All</SelectItem>
-            <SelectItem value="beginner">Beginner</SelectItem>
-            <SelectItem value="intermediate">Intermediate</SelectItem>
-            <SelectItem value="advanced">Advanced</SelectItem>
-            <SelectItem value="all">All Levels</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="grid gap-1">
         <label className="text-xs text-muted-foreground">Instructor</label>
         <Input
           placeholder="Search..."
-          className="w-[150px]"
           value={filters.instructor}
           onChange={(e) => setFilter("instructor", e.target.value)}
         />
@@ -110,21 +90,22 @@ export default function FilterBar({
         />
       </div>
 
-      <div className="grid gap-1">
+      <div className="grid gap-1 flex-row">
         <label className="text-xs text-muted-foreground">To</label>
-        <Input
-          type="date"
-          className="w-[140px]"
-          value={filters.endDate}
-          onChange={(e) => setFilter("endDate", e.target.value)}
-        />
+        <div className="flex items-center gap-2">
+          <Input
+            type="date"
+            className="w-[140px]"
+            value={filters.endDate}
+            onChange={(e) => setFilter("endDate", e.target.value)}
+          />
+          {hasActiveFilters && (
+            <Button variant="ghost" size="sm" onClick={resetFilters}>
+              Clear
+            </Button>
+          )}
+        </div>
       </div>
-
-      {hasActiveFilters && (
-        <Button variant="ghost" size="sm" onClick={resetFilters}>
-          Clear
-        </Button>
-      )}
     </div>
   );
 }
