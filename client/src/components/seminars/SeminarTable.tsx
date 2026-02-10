@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -186,12 +186,12 @@ export default function SeminarTable() {
     setDialogOpen(true);
   };
 
-  const handleEdit = (seminar: Seminar) => {
+  const handleEdit = useCallback((seminar: Seminar) => {
     setEditingSeminar(seminar);
     setDialogOpen(true);
-  };
+  }, []);
 
-  const handleDelete = async (seminar: Seminar) => {
+  const handleDelete = useCallback(async (seminar: Seminar) => {
     if (!window.confirm(`Delete "${seminar.title}"?`)) return;
     try {
       await deleteSeminar(seminar.id);
@@ -199,27 +199,30 @@ export default function SeminarTable() {
     } catch {
       alert("Failed to delete seminar.");
     }
-  };
+  }, [loadSeminars]);
 
-  const handleSave = async (data: SeminarFormData) => {
+  const handleSave = useCallback(async (data: SeminarFormData) => {
     if (editingSeminar) {
       await updateSeminar(editingSeminar.id, data);
     } else {
       await createSeminar(data);
     }
     loadSeminars();
-  };
+  }, [editingSeminar, loadSeminars]);
 
-  const filtered = applyFilters(seminars, filters);
-  const columns = makeColumns(handleEdit, handleDelete);
+  const filtered = useMemo(() => applyFilters(seminars, filters), [seminars, filters]);
+  const columns = useMemo(() => makeColumns(handleEdit, handleDelete), [handleEdit, handleDelete]);
+  const tableState = useMemo(() => ({ sorting }), [sorting]);
+  const coreRowModel = useMemo(() => getCoreRowModel<Seminar>(), []);
+  const sortedRowModel = useMemo(() => getSortedRowModel<Seminar>(), []);
 
   const table = useReactTable({
     data: filtered,
     columns,
-    state: { sorting },
+    state: tableState,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    getCoreRowModel: coreRowModel,
+    getSortedRowModel: sortedRowModel,
   });
 
   if (loading) {

@@ -35,7 +35,7 @@ export default function FilterBar({
           value={filters.country || "_all"}
           onValueChange={(v) => setFilter("country", v === "_all" ? "" : v)}
         >
-          <SelectTrigger>
+          <SelectTrigger className="w-full">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
@@ -57,7 +57,7 @@ export default function FilterBar({
             setFilter("organization", v === "_all" ? "" : v)
           }
         >
-          <SelectTrigger>
+          <SelectTrigger className="w-full">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
