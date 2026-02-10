@@ -28,7 +28,7 @@ export default function FilterBar({
   const hasActiveFilters = Object.values(filters).some((v) => v !== "");
 
   return (
-    <div className="grid grid-cols-[1fr_1fr_1fr_auto_auto] items-end gap-3 mb-4">
+    <div className="grid grid-cols-5 items-end gap-3 mb-4">
       <div className="grid gap-1">
         <label className="text-xs text-muted-foreground">Country</label>
         <Select
@@ -84,7 +84,7 @@ export default function FilterBar({
         <label className="text-xs text-muted-foreground">From</label>
         <Input
           type="date"
-          className="w-[140px]"
+          className="w-full"
           value={filters.startDate}
           onChange={(e) => setFilter("startDate", e.target.value)}
         />
@@ -95,7 +95,7 @@ export default function FilterBar({
         <div className="flex items-center gap-2">
           <Input
             type="date"
-            className="w-[140px]"
+            className="w-full"
             value={filters.endDate}
             onChange={(e) => setFilter("endDate", e.target.value)}
           />
