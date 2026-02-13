@@ -55,10 +55,10 @@ export default function SeminarMap() {
 
   if (loading) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center bg-[#0f0f14]">
+      <div className="absolute inset-0 flex items-center justify-center bg-[#f0ebe4]">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-[#c73e1d] border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm text-[#8a8578]">Loading map...</span>
+          <div className="w-8 h-8 border-2 border-[#b83518] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-[#7a7468]">Loading map...</span>
         </div>
       </div>
     );
@@ -93,35 +93,35 @@ export default function SeminarMap() {
               <Popup>
                 <div className="min-w-[240px] p-1">
                   <h3
-                    className="font-bold text-sm mb-1.5 leading-tight text-[#f5f0e8]"
+                    className="font-bold text-sm mb-1.5 leading-tight text-[#1a1a2e]"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {seminar.title}
                   </h3>
-                  <p className="text-xs text-[#8a8578] mb-1">
+                  <p className="text-xs text-[#7a7468] mb-1">
                     {seminar.instructor}
                     {seminar.instructorRank && (
-                      <span className="text-[#b8960b]"> ({seminar.instructorRank})</span>
+                      <span className="text-[#9a7d08]"> ({seminar.instructorRank})</span>
                     )}
                   </p>
-                  <div className="h-[1px] bg-[#2a2a35] my-2" />
-                  <p className="text-xs text-[#d4c8b8] mb-1">
+                  <div className="h-[1px] bg-[#e0dbd3] my-2" />
+                  <p className="text-xs text-[#2a2a3e] mb-1">
                     {format(new Date(seminar.startDate), "MMM d")} —{" "}
                     {format(new Date(seminar.endDate), "MMM d, yyyy")}
                   </p>
-                  <p className="text-xs text-[#8a8578]">
+                  <p className="text-xs text-[#7a7468]">
                     {seminar.venue && `${seminar.venue}, `}
                     {seminar.city}, {seminar.country}
                   </p>
                   {seminar.fee && (
-                    <p className="text-xs mt-1.5 font-medium text-[#b8960b]">{seminar.fee}</p>
+                    <p className="text-xs mt-1.5 font-medium text-[#9a7d08]">{seminar.fee}</p>
                   )}
                   {(seminar.registrationUrl || seminar.sourceUrl) && (
                     <a
                       href={seminar.registrationUrl || seminar.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-[#c73e1d] hover:text-[#e04a2a] mt-2 inline-flex items-center gap-1 transition-colors"
+                      className="text-xs text-[#b83518] hover:text-[#d44a28] mt-2 inline-flex items-center gap-1 transition-colors"
                     >
                       More info
                       <ExternalLink className="h-3 w-3" />
@@ -138,24 +138,24 @@ export default function SeminarMap() {
       <div className="absolute top-3 left-3 z-[1000] animate-slide-in-left">
         <button
           onClick={() => setFiltersOpen(!filtersOpen)}
-          className="bg-[#16161e]/95 backdrop-blur-md shadow-xl rounded-lg px-4 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-[#1c1c24] transition-all duration-200 border border-[#2a2a35] text-[#d4c8b8]"
+          className="bg-white/95 backdrop-blur-md shadow-lg rounded-lg px-4 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-[#f5f0e8] transition-all duration-200 border border-[#e0dbd3] text-[#2a2a3e]"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          <SlidersHorizontal className="h-4 w-4 text-[#8a8578]" />
+          <SlidersHorizontal className="h-4 w-4 text-[#7a7468]" />
           Filters
           {hasActiveFilters && (
-            <span className="bg-[#c73e1d] text-[#f5f0e8] text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+            <span className="bg-[#b83518] text-[#faf7f2] text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
               !
             </span>
           )}
           {filtersOpen ? (
-            <ChevronUp className="h-4 w-4 text-[#8a8578]" />
+            <ChevronUp className="h-4 w-4 text-[#7a7468]" />
           ) : (
-            <ChevronDown className="h-4 w-4 text-[#8a8578]" />
+            <ChevronDown className="h-4 w-4 text-[#7a7468]" />
           )}
         </button>
         {filtersOpen && (
-          <div className="mt-2 bg-[#16161e]/95 backdrop-blur-md shadow-xl rounded-lg p-5 border border-[#2a2a35] max-w-[90vw] animate-fade-up">
+          <div className="mt-2 bg-white/95 backdrop-blur-md shadow-lg rounded-lg p-5 border border-[#e0dbd3] max-w-[90vw] animate-fade-up">
             <FilterBar organizations={organizations} />
           </div>
         )}
@@ -163,12 +163,12 @@ export default function SeminarMap() {
 
       {/* Seminar count badge */}
       <div
-        className="absolute bottom-4 left-3 z-[1000] bg-[#16161e]/90 backdrop-blur-md shadow-lg rounded-lg px-4 py-2 text-xs border border-[#2a2a35] flex items-center gap-2"
+        className="absolute bottom-4 left-3 z-[1000] bg-white/90 backdrop-blur-md shadow-md rounded-lg px-4 py-2 text-xs border border-[#e0dbd3] flex items-center gap-2"
         style={{ fontFamily: "var(--font-body)" }}
       >
-        <div className="w-2 h-2 rounded-full bg-[#c73e1d] animate-pulse" />
-        <span className="text-[#8a8578]">
-          <span className="text-[#d4c8b8] font-medium">{filtered.length}</span> of {seminars.length} seminars
+        <div className="w-2 h-2 rounded-full bg-[#b83518] animate-pulse" />
+        <span className="text-[#7a7468]">
+          <span className="text-[#1a1a2e] font-medium">{filtered.length}</span> of {seminars.length} seminars
         </span>
       </div>
     </div>

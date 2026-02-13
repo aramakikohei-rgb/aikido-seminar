@@ -13,9 +13,9 @@ export default function AppShell() {
   const isMapView = location.pathname === "/map";
 
   return (
-    <div className="h-screen flex flex-col overflow-x-hidden bg-[#0f0f14]">
+    <div className="h-screen flex flex-col overflow-x-hidden bg-[#faf7f2]">
       {/* Header */}
-      <header className="border-b border-[#2a2a35] bg-[#0f0f14]/95 backdrop-blur-md shrink-0 sticky top-0 z-50">
+      <header className="border-b border-[#e0dbd3] bg-[#faf7f2]/95 backdrop-blur-md shrink-0 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Brand */}
           <div className="flex items-center gap-4">
@@ -26,7 +26,7 @@ export default function AppShell() {
                   cx="20"
                   cy="20"
                   r="15"
-                  stroke="#c73e1d"
+                  stroke="#b83518"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeDasharray="85 10"
@@ -36,12 +36,12 @@ export default function AppShell() {
             </div>
             <div>
               <h1
-                className="text-xl tracking-tight text-[#f5f0e8]"
+                className="text-xl tracking-tight text-[#1a1a2e]"
                 style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
               >
                 Aikido Seminar Tracker
               </h1>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a8578] mt-[-2px]"
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7468] mt-[-2px]"
                  style={{ fontFamily: "var(--font-body)" }}>
                 Global Events Directory
               </p>
@@ -49,7 +49,7 @@ export default function AppShell() {
           </div>
 
           {/* Navigation */}
-          <nav className="flex gap-1 bg-[#16161e] rounded-lg p-1 border border-[#2a2a35]">
+          <nav className="flex gap-1 bg-[#f0ebe4] rounded-lg p-1 border border-[#e0dbd3]">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -59,8 +59,8 @@ export default function AppShell() {
                   className={({ isActive }) =>
                     `px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
                       isActive
-                        ? "bg-[#c73e1d] text-[#f5f0e8] shadow-lg shadow-[#c73e1d]/20"
-                        : "text-[#8a8578] hover:text-[#d4c8b8] hover:bg-[#1c1c24]"
+                        ? "bg-[#b83518] text-[#faf7f2] shadow-lg shadow-[#b83518]/15"
+                        : "text-[#7a7468] hover:text-[#1a1a2e] hover:bg-[#e8e3db]"
                     }`
                   }
                   style={{ fontFamily: "var(--font-body)" }}
@@ -74,7 +74,7 @@ export default function AppShell() {
         </div>
 
         {/* Decorative accent line */}
-        <div className="h-[1px] bg-gradient-to-r from-transparent via-[#c73e1d]/30 to-transparent" />
+        <div className="h-[1px] bg-gradient-to-r from-transparent via-[#b83518]/20 to-transparent" />
       </header>
 
       {isMapView ? (

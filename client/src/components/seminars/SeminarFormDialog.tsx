@@ -68,7 +68,7 @@ interface Props {
 }
 
 const inputClasses =
-  "bg-[#12121a] border-[#2a2a35] text-[#d4c8b8] placeholder:text-[#555] hover:border-[#3a3a45] transition-colors focus:ring-[#c73e1d]/30 focus:border-[#c73e1d]/50";
+  "bg-[#faf7f2] border-[#e0dbd3] text-[#1a1a2e] placeholder:text-[#b8b2a8] hover:border-[#c8c2b8] transition-colors focus:ring-[#b83518]/20 focus:border-[#b83518]/40";
 
 export default function SeminarFormDialog({
   open,
@@ -104,20 +104,20 @@ export default function SeminarFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-[#16161e] border-[#2a2a35] text-[#e8e0d4]">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white border-[#e0dbd3] text-[#1a1a2e]">
         <DialogHeader>
           <DialogTitle
-            className="text-[#f5f0e8] text-xl"
+            className="text-[#1a1a2e] text-xl"
             style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
           >
             {isEdit ? "Edit Seminar" : "Add Seminar"}
           </DialogTitle>
-          <div className="h-[1px] bg-gradient-to-r from-[#c73e1d]/40 to-transparent mt-2" />
+          <div className="h-[1px] bg-gradient-to-r from-[#b83518]/30 to-transparent mt-2" />
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-5 py-2">
           {/* Title */}
           <div className="grid gap-1.5">
-            <Label htmlFor="title" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+            <Label htmlFor="title" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
               Title *
             </Label>
             <Input
@@ -132,7 +132,7 @@ export default function SeminarFormDialog({
           {/* Instructor row */}
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-1.5">
-              <Label htmlFor="instructor" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="instructor" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Instructor *
               </Label>
               <Input
@@ -144,7 +144,7 @@ export default function SeminarFormDialog({
               />
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="instructorRank" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="instructorRank" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Rank
               </Label>
               <Input
@@ -160,7 +160,7 @@ export default function SeminarFormDialog({
           {/* Organization / Style */}
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-1.5">
-              <Label htmlFor="organization" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="organization" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Organization
               </Label>
               <Input
@@ -172,7 +172,7 @@ export default function SeminarFormDialog({
               />
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="style" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="style" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Style
               </Label>
               <Input
@@ -188,7 +188,7 @@ export default function SeminarFormDialog({
           {/* Dates */}
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-1.5">
-              <Label htmlFor="startDate" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="startDate" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Start Date *
               </Label>
               <Input
@@ -201,7 +201,7 @@ export default function SeminarFormDialog({
               />
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="endDate" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="endDate" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 End Date *
               </Label>
               <Input
@@ -217,7 +217,7 @@ export default function SeminarFormDialog({
 
           {/* Venue */}
           <div className="grid gap-1.5">
-            <Label htmlFor="venue" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+            <Label htmlFor="venue" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
               Venue
             </Label>
             <Input
@@ -231,7 +231,7 @@ export default function SeminarFormDialog({
           {/* Location row */}
           <div className="grid grid-cols-3 gap-4">
             <div className="grid gap-1.5">
-              <Label htmlFor="city" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="city" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 City *
               </Label>
               <Input
@@ -243,7 +243,7 @@ export default function SeminarFormDialog({
               />
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="country" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="country" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Country *
               </Label>
               <Input
@@ -255,7 +255,7 @@ export default function SeminarFormDialog({
               />
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="countryCode" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="countryCode" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Code *
               </Label>
               <Input
@@ -274,12 +274,12 @@ export default function SeminarFormDialog({
 
           {/* Description */}
           <div className="grid gap-1.5">
-            <Label htmlFor="description" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+            <Label htmlFor="description" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
               Description
             </Label>
             <textarea
               id="description"
-              className={`flex min-h-[80px] w-full rounded-md border px-3 py-2 text-sm ring-offset-background placeholder:text-[#555] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c73e1d]/30 ${inputClasses}`}
+              className={`flex min-h-[80px] w-full rounded-md border px-3 py-2 text-sm ring-offset-background placeholder:text-[#b8b2a8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b83518]/20 ${inputClasses}`}
               value={form.description}
               onChange={(e) => set("description", e.target.value)}
             />
@@ -288,7 +288,7 @@ export default function SeminarFormDialog({
           {/* Level / Fee */}
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-1.5">
-              <Label className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Level
               </Label>
               <Select
@@ -298,7 +298,7 @@ export default function SeminarFormDialog({
                 <SelectTrigger className={inputClasses}>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1a1a24] border-[#2a2a35] text-[#d4c8b8]">
+                <SelectContent className="bg-white border-[#e0dbd3] text-[#1a1a2e]">
                   <SelectItem value="all">All Levels</SelectItem>
                   <SelectItem value="beginner">Beginner</SelectItem>
                   <SelectItem value="intermediate">Intermediate</SelectItem>
@@ -307,7 +307,7 @@ export default function SeminarFormDialog({
               </Select>
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="fee" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="fee" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Fee
               </Label>
               <Input
@@ -323,7 +323,7 @@ export default function SeminarFormDialog({
           {/* Links */}
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-1.5">
-              <Label htmlFor="registrationUrl" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="registrationUrl" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Registration URL
               </Label>
               <Input
@@ -335,7 +335,7 @@ export default function SeminarFormDialog({
               />
             </div>
             <div className="grid gap-1.5">
-              <Label htmlFor="contactEmail" className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578] font-semibold">
+              <Label htmlFor="contactEmail" className="text-[10px] uppercase tracking-[0.12em] text-[#7a7468] font-semibold">
                 Contact Email
               </Label>
               <Input
@@ -349,11 +349,11 @@ export default function SeminarFormDialog({
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-3 pt-3 border-t border-[#2a2a35]">
+          <div className="flex justify-end gap-3 pt-3 border-t border-[#e0dbd3]">
             <button
               type="button"
               onClick={() => onOpenChange(false)}
-              className="px-5 py-2.5 rounded-lg text-sm font-medium text-[#8a8578] hover:text-[#d4c8b8] hover:bg-[#1c1c24] border border-[#2a2a35] transition-all duration-200"
+              className="px-5 py-2.5 rounded-lg text-sm font-medium text-[#7a7468] hover:text-[#1a1a2e] hover:bg-[#f0ebe4] border border-[#e0dbd3] transition-all duration-200"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Cancel
@@ -361,7 +361,7 @@ export default function SeminarFormDialog({
             <button
               type="submit"
               disabled={saving}
-              className="px-5 py-2.5 rounded-lg text-sm font-medium bg-[#c73e1d] hover:bg-[#d44a28] text-[#f5f0e8] transition-all duration-200 shadow-lg shadow-[#c73e1d]/15 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-5 py-2.5 rounded-lg text-sm font-medium bg-[#b83518] hover:bg-[#d44a28] text-[#faf7f2] transition-all duration-200 shadow-lg shadow-[#b83518]/15 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ fontFamily: "var(--font-body)" }}
             >
               {saving ? "Saving..." : isEdit ? "Update" : "Create"}

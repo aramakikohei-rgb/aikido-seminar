@@ -5,34 +5,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─── Sumi-e Editorial Theme ─── */
+/* ─── Sumi-e Editorial Theme (Light) ─── */
 @theme {
-  --color-background: #0f0f14;
-  --color-foreground: #e8e0d4;
-  --color-muted: #1c1c24;
-  --color-muted-foreground: #8a8578;
-  --color-border: #2a2a35;
-  --color-primary: #c73e1d;
-  --color-primary-foreground: #f5f0e8;
-  --color-accent: #1a1a26;
-  --color-accent-foreground: #d4c8b8;
+  --color-background: #faf7f2;
+  --color-foreground: #1a1a2e;
+  --color-muted: #f0ebe4;
+  --color-muted-foreground: #7a7468;
+  --color-border: #e0dbd3;
+  --color-primary: #b83518;
+  --color-primary-foreground: #faf7f2;
+  --color-accent: #f0ebe4;
+  --color-accent-foreground: #1a1a2e;
   --color-destructive: #a83232;
-  --color-ring: #c73e1d;
-  --color-card: #16161e;
-  --color-card-foreground: #e8e0d4;
-  --color-popover: #1a1a24;
-  --color-popover-foreground: #e8e0d4;
+  --color-ring: #b83518;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a2e;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1a2e;
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
 
   /* Custom semantic colors */
-  --color-vermillion: #c73e1d;
-  --color-gold: #b8960b;
-  --color-paper: #f5f0e8;
-  --color-ink: #0f0f14;
-  --color-charcoal: #1c1c24;
-  --color-warm-gray: #8a8578;
+  --color-vermillion: #b83518;
+  --color-gold: #9a7d08;
+  --color-paper: #faf7f2;
+  --color-ink: #1a1a2e;
+  --color-warm-gray: #7a7468;
 
   /* Fonts */
   --font-display: "Cormorant Garamond", "Georgia", serif;
@@ -41,8 +40,8 @@
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-ink);
-  color: var(--color-paper);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -91,37 +90,37 @@ body {
 
 :root {
   --radius: 0.5rem;
-  --background: #0f0f14;
-  --foreground: #e8e0d4;
-  --card: #16161e;
-  --card-foreground: #e8e0d4;
-  --popover: #1a1a24;
-  --popover-foreground: #e8e0d4;
-  --primary: #c73e1d;
-  --primary-foreground: #f5f0e8;
-  --secondary: #1c1c24;
-  --secondary-foreground: #d4c8b8;
-  --muted: #1c1c24;
-  --muted-foreground: #8a8578;
-  --accent: #1a1a26;
-  --accent-foreground: #d4c8b8;
+  --background: #faf7f2;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+  --primary: #b83518;
+  --primary-foreground: #faf7f2;
+  --secondary: #f0ebe4;
+  --secondary-foreground: #1a1a2e;
+  --muted: #f0ebe4;
+  --muted-foreground: #7a7468;
+  --accent: #f0ebe4;
+  --accent-foreground: #1a1a2e;
   --destructive: #a83232;
-  --border: #2a2a35;
-  --input: #2a2a35;
-  --ring: #c73e1d;
-  --chart-1: #c73e1d;
-  --chart-2: #b8960b;
+  --border: #e0dbd3;
+  --input: #e0dbd3;
+  --ring: #b83518;
+  --chart-1: #b83518;
+  --chart-2: #9a7d08;
   --chart-3: #3b6b4a;
   --chart-4: #4a6fa5;
   --chart-5: #8b6fa5;
-  --sidebar: #16161e;
-  --sidebar-foreground: #e8e0d4;
-  --sidebar-primary: #c73e1d;
-  --sidebar-primary-foreground: #f5f0e8;
-  --sidebar-accent: #1c1c24;
-  --sidebar-accent-foreground: #d4c8b8;
-  --sidebar-border: #2a2a35;
-  --sidebar-ring: #c73e1d;
+  --sidebar: #f5f0e8;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #b83518;
+  --sidebar-primary-foreground: #faf7f2;
+  --sidebar-accent: #f0ebe4;
+  --sidebar-accent-foreground: #1a1a2e;
+  --sidebar-border: #e0dbd3;
+  --sidebar-ring: #b83518;
 }
 
 @layer base {
@@ -134,14 +133,14 @@ body {
   }
 }
 
-/* ─── Paper grain texture overlay ─── */
+/* ─── Subtle paper grain texture overlay ─── */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.025;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
@@ -175,15 +174,6 @@ body::before {
   }
 }
 
-@keyframes brush-stroke {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
 .animate-fade-up {
   animation: fade-up 0.5s ease-out both;
 }
@@ -211,15 +201,15 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a2a35;
+  background: #d4cec4;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a45;
+  background: #b8b2a8;
 }
 
-/* ─── Leaflet overrides (Sumi-e theme) ─── */
+/* ─── Leaflet overrides (Sumi-e light theme) ─── */
 
 /* Reset Tailwind's global border/outline styles inside Leaflet */
 .leaflet-container,
@@ -232,18 +222,18 @@ body::before {
   border: none;
 }
 
-/* Dark popup styling */
+/* Light popup styling */
 .leaflet-popup-content-wrapper {
   border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(199, 62, 29, 0.15);
+  box-shadow: 0 8px 32px rgba(26, 26, 46, 0.12), 0 0 0 1px rgba(184, 53, 24, 0.08);
   padding: 4px;
-  background: #16161e;
-  color: #e8e0d4;
+  background: #ffffff;
+  color: #1a1a2e;
 }
 
 .leaflet-popup-tip {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  background: #16161e;
+  box-shadow: 0 4px 20px rgba(26, 26, 46, 0.1);
+  background: #ffffff;
 }
 
 .leaflet-popup-content {
@@ -252,21 +242,21 @@ body::before {
 }
 
 .leaflet-popup-content a {
-  color: #c73e1d !important;
+  color: #b83518 !important;
 }
 
 /* Themed zoom controls */
 .leaflet-control-zoom {
   border: none !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 2px 12px rgba(26, 26, 46, 0.1) !important;
   border-radius: 8px !important;
   overflow: hidden;
 }
 
 .leaflet-control-zoom a {
   border: none !important;
-  background-color: #16161e;
-  color: #e8e0d4;
+  background-color: #ffffff;
+  color: #1a1a2e;
   width: 36px;
   height: 36px;
   line-height: 36px;
@@ -274,21 +264,21 @@ body::before {
 }
 
 .leaflet-control-zoom a:hover {
-  background-color: #1c1c24;
-  color: #c73e1d;
+  background-color: #f5f0e8;
+  color: #b83518;
 }
 
 /* Attribution */
 .leaflet-control-attribution {
-  background: rgba(15, 15, 20, 0.8) !important;
+  background: rgba(250, 247, 242, 0.85) !important;
   backdrop-filter: blur(4px);
   font-size: 10px;
   padding: 2px 6px;
-  color: #8a8578 !important;
+  color: #7a7468 !important;
 }
 
 .leaflet-control-attribution a {
-  color: #8a8578 !important;
+  color: #7a7468 !important;
 }
 
 /* Custom dot markers — vermillion */
@@ -300,31 +290,31 @@ body::before {
 .seminar-marker-dot {
   width: 14px;
   height: 14px;
-  background-color: #c73e1d;
+  background-color: #b83518;
   border-radius: 50%;
-  border: 2.5px solid #0f0f14;
-  box-shadow: 0 0 0 1px rgba(199, 62, 29, 0.4), 0 2px 8px rgba(199, 62, 29, 0.3);
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 0 0 1px rgba(184, 53, 24, 0.3), 0 2px 8px rgba(184, 53, 24, 0.25);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .seminar-marker:hover .seminar-marker-dot {
   transform: scale(1.4);
-  box-shadow: 0 0 0 2px rgba(199, 62, 29, 0.6), 0 4px 16px rgba(199, 62, 29, 0.5);
+  box-shadow: 0 0 0 2px rgba(184, 53, 24, 0.4), 0 4px 16px rgba(184, 53, 24, 0.35);
 }
 
 /* Cluster markers — vermillion theme */
 .marker-cluster-small,
 .marker-cluster-medium,
 .marker-cluster-large {
-  background-color: rgba(199, 62, 29, 0.15) !important;
+  background-color: rgba(184, 53, 24, 0.12) !important;
   border-radius: 50%;
 }
 
 .marker-cluster-small div,
 .marker-cluster-medium div,
 .marker-cluster-large div {
-  background-color: rgba(199, 62, 29, 0.85);
-  color: #f5f0e8;
+  background-color: rgba(184, 53, 24, 0.85);
+  color: #faf7f2;
   border-radius: 50%;
   font-weight: 600;
   font-size: 12px;
@@ -337,11 +327,7 @@ body::before {
   margin-top: 5px;
 }
 
-/* ─── Custom map tile darkness ─── */
+/* ─── Map background ─── */
 .leaflet-container {
-  background: #0f0f14;
-}
-
-.leaflet-tile-pane {
-  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(1.1) saturate(0.3);
+  background: #f0ebe4;
 }

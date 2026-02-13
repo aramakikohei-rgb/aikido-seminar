@@ -29,10 +29,10 @@ import { useFilters } from "@/context/FilterContext";
 import { applyFilters } from "@/lib/filters";
 
 const levelColors: Record<string, string> = {
-  all: "bg-[#1c1c24] text-[#8a8578] border-[#2a2a35]",
-  beginner: "bg-[#1a2e1a] text-[#6db86d] border-[#2a4a2a]",
-  intermediate: "bg-[#2a1a10] text-[#b8960b] border-[#3a2a1a]",
-  advanced: "bg-[#2a1010] text-[#c73e1d] border-[#3a1a1a]",
+  all: "bg-[#f0ebe4] text-[#7a7468] border-[#e0dbd3]",
+  beginner: "bg-[#edf7ed] text-[#2d7a2d] border-[#c8e6c8]",
+  intermediate: "bg-[#fdf5e6] text-[#8a6d08] border-[#e8d9a8]",
+  advanced: "bg-[#fdeeed] text-[#b83518] border-[#f0c4be]",
 };
 
 function makeColumns(
@@ -45,7 +45,7 @@ function makeColumns(
       header: "Title",
       cell: ({ row }) => (
         <span
-          className="font-semibold text-[#f5f0e8]"
+          className="font-semibold text-[#1a1a2e]"
           style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem" }}
         >
           {row.getValue("title")}
@@ -57,9 +57,9 @@ function makeColumns(
       header: "Instructor",
       cell: ({ row }) => (
         <div>
-          <div className="text-[#d4c8b8] font-medium">{row.original.instructor}</div>
+          <div className="text-[#2a2a3e] font-medium">{row.original.instructor}</div>
           {row.original.instructorRank && (
-            <div className="text-xs text-[#8a8578] mt-0.5">
+            <div className="text-xs text-[#7a7468] mt-0.5">
               {row.original.instructorRank}
             </div>
           )}
@@ -73,7 +73,7 @@ function makeColumns(
         const start = format(new Date(row.original.startDate), "MMM d, yyyy");
         const end = format(new Date(row.original.endDate), "MMM d, yyyy");
         return (
-          <span className="text-sm text-[#8a8578] tabular-nums">
+          <span className="text-sm text-[#7a7468] tabular-nums">
             {start} — {end}
           </span>
         );
@@ -85,8 +85,8 @@ function makeColumns(
       accessorFn: (row) => `${row.city}, ${row.country}`,
       cell: ({ row }) => (
         <div>
-          <div className="text-[#d4c8b8]">{row.original.city}</div>
-          <div className="text-xs text-[#8a8578] mt-0.5">
+          <div className="text-[#2a2a3e]">{row.original.city}</div>
+          <div className="text-xs text-[#7a7468] mt-0.5">
             {row.original.country}
           </div>
         </div>
@@ -96,7 +96,7 @@ function makeColumns(
       accessorKey: "organization",
       header: "Org",
       cell: ({ row }) => (
-        <span className="text-sm text-[#8a8578]">
+        <span className="text-sm text-[#7a7468]">
           {row.original.organization || "—"}
         </span>
       ),
@@ -122,7 +122,7 @@ function makeColumns(
       accessorKey: "fee",
       header: "Fee",
       cell: ({ row }) => (
-        <span className="text-sm text-[#b8960b] font-medium tabular-nums">
+        <span className="text-sm text-[#9a7d08] font-medium tabular-nums">
           {row.original.fee || "—"}
         </span>
       ),
@@ -138,7 +138,7 @@ function makeColumns(
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#c73e1d] hover:text-[#e04a2a] transition-colors inline-flex items-center gap-1 text-sm"
+            className="text-[#b83518] hover:text-[#d44a28] transition-colors inline-flex items-center gap-1 text-sm"
           >
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
@@ -151,13 +151,13 @@ function makeColumns(
       cell: ({ row }) => (
         <div className="flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <button
-            className="h-8 w-8 rounded-md flex items-center justify-center text-[#8a8578] hover:text-[#d4c8b8] hover:bg-[#1c1c24] transition-all"
+            className="h-8 w-8 rounded-md flex items-center justify-center text-[#7a7468] hover:text-[#1a1a2e] hover:bg-[#f0ebe4] transition-all"
             onClick={() => onEdit(row.original)}
           >
             <Pencil className="h-3.5 w-3.5" />
           </button>
           <button
-            className="h-8 w-8 rounded-md flex items-center justify-center text-[#8a8578] hover:text-[#c73e1d] hover:bg-[#2a1010] transition-all"
+            className="h-8 w-8 rounded-md flex items-center justify-center text-[#7a7468] hover:text-[#b83518] hover:bg-[#fdeeed] transition-all"
             onClick={() => onDelete(row.original)}
           >
             <Trash2 className="h-3.5 w-3.5" />
@@ -240,8 +240,8 @@ export default function SeminarTable() {
     return (
       <div className="flex items-center justify-center py-24">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-[#c73e1d] border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm text-[#8a8578]">Loading seminars...</span>
+          <div className="w-8 h-8 border-2 border-[#b83518] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-[#7a7468]">Loading seminars...</span>
         </div>
       </div>
     );
@@ -250,7 +250,7 @@ export default function SeminarTable() {
   if (error) {
     return (
       <div className="flex items-center justify-center py-24">
-        <div className="bg-[#2a1010] border border-[#3a1a1a] rounded-lg px-6 py-4 text-[#c73e1d]">
+        <div className="bg-[#fdeeed] border border-[#f0c4be] rounded-lg px-6 py-4 text-[#b83518]">
           Error: {error}
         </div>
       </div>
@@ -263,18 +263,18 @@ export default function SeminarTable() {
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-baseline gap-3">
           <span
-            className="text-2xl text-[#f5f0e8]"
+            className="text-2xl text-[#1a1a2e]"
             style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
           >
             Seminars
           </span>
-          <span className="text-sm text-[#8a8578]">
+          <span className="text-sm text-[#7a7468]">
             {filtered.length} of {seminars.length}
           </span>
         </div>
         <button
           onClick={handleAdd}
-          className="flex items-center gap-2 px-4 py-2.5 bg-[#c73e1d] hover:bg-[#d44a28] text-[#f5f0e8] rounded-lg text-sm font-medium transition-all duration-200 shadow-lg shadow-[#c73e1d]/15 hover:shadow-[#c73e1d]/25"
+          className="flex items-center gap-2 px-4 py-2.5 bg-[#b83518] hover:bg-[#d44a28] text-[#faf7f2] rounded-lg text-sm font-medium transition-all duration-200 shadow-lg shadow-[#b83518]/15 hover:shadow-[#b83518]/25"
           style={{ fontFamily: "var(--font-body)" }}
         >
           <Plus className="h-4 w-4" />
@@ -283,16 +283,16 @@ export default function SeminarTable() {
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-[#2a2a35] bg-[#16161e]/50 overflow-hidden">
+      <div className="rounded-lg border border-[#e0dbd3] bg-white overflow-hidden shadow-sm">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="border-b border-[#2a2a35] hover:bg-transparent">
+              <TableRow key={headerGroup.id} className="border-b border-[#e0dbd3] hover:bg-transparent">
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={`text-[10px] uppercase tracking-[0.15em] text-[#8a8578] font-semibold py-3 bg-[#12121a] ${
-                      header.column.getCanSort() ? "cursor-pointer select-none hover:text-[#d4c8b8]" : ""
+                    className={`text-[10px] uppercase tracking-[0.15em] text-[#7a7468] font-semibold py-3 bg-[#f5f0e8] ${
+                      header.column.getCanSort() ? "cursor-pointer select-none hover:text-[#1a1a2e]" : ""
                     }`}
                     style={{ fontFamily: "var(--font-body)" }}
                     onClick={header.column.getToggleSortingHandler()}
@@ -301,8 +301,8 @@ export default function SeminarTable() {
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
-                      {header.column.getIsSorted() === "asc" && <ArrowUp className="h-3 w-3 text-[#c73e1d]" />}
-                      {header.column.getIsSorted() === "desc" && <ArrowDown className="h-3 w-3 text-[#c73e1d]" />}
+                      {header.column.getIsSorted() === "asc" && <ArrowUp className="h-3 w-3 text-[#b83518]" />}
+                      {header.column.getIsSorted() === "desc" && <ArrowDown className="h-3 w-3 text-[#b83518]" />}
                     </div>
                   </TableHead>
                 ))}
@@ -314,7 +314,7 @@ export default function SeminarTable() {
               table.getRowModel().rows.map((row, i) => (
                 <TableRow
                   key={row.id}
-                  className="group border-b border-[#1c1c24] hover:bg-[#1a1a24] transition-colors duration-150 stagger-row"
+                  className="group border-b border-[#f0ebe4] hover:bg-[#f5f0e8]/50 transition-colors duration-150 stagger-row"
                   style={{ animationDelay: `${Math.min(i * 30, 300)}ms` }}
                 >
                   {row.getVisibleCells().map((cell) => (
@@ -328,7 +328,7 @@ export default function SeminarTable() {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-32 text-center text-[#8a8578]"
+                  className="h-32 text-center text-[#7a7468]"
                 >
                   <div className="flex flex-col items-center gap-2">
                     <span style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem" }}>
