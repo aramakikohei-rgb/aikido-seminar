@@ -23,18 +23,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Trash2, Pencil } from "lucide-react";
+import { Trash2, Pencil, Plus, ExternalLink, ArrowUp, ArrowDown } from "lucide-react";
 import SeminarFormDialog from "./SeminarFormDialog";
 import { useFilters } from "@/context/FilterContext";
 import { applyFilters } from "@/lib/filters";
 
-const levelColors: Record<string, "default" | "secondary" | "outline"> = {
-  all: "secondary",
-  beginner: "outline",
-  intermediate: "default",
-  advanced: "default",
+const levelColors: Record<string, string> = {
+  all: "bg-[#1c1c24] text-[#8a8578] border-[#2a2a35]",
+  beginner: "bg-[#1a2e1a] text-[#6db86d] border-[#2a4a2a]",
+  intermediate: "bg-[#2a1a10] text-[#b8960b] border-[#3a2a1a]",
+  advanced: "bg-[#2a1010] text-[#c73e1d] border-[#3a1a1a]",
 };
 
 function makeColumns(
@@ -46,7 +44,12 @@ function makeColumns(
       accessorKey: "title",
       header: "Title",
       cell: ({ row }) => (
-        <span className="font-medium">{row.getValue("title")}</span>
+        <span
+          className="font-semibold text-[#f5f0e8]"
+          style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem" }}
+        >
+          {row.getValue("title")}
+        </span>
       ),
     },
     {
@@ -54,9 +57,9 @@ function makeColumns(
       header: "Instructor",
       cell: ({ row }) => (
         <div>
-          <div>{row.original.instructor}</div>
+          <div className="text-[#d4c8b8] font-medium">{row.original.instructor}</div>
           {row.original.instructorRank && (
-            <div className="text-xs text-muted-foreground">
+            <div className="text-xs text-[#8a8578] mt-0.5">
               {row.original.instructorRank}
             </div>
           )}
@@ -67,13 +70,10 @@ function makeColumns(
       accessorKey: "startDate",
       header: "Dates",
       cell: ({ row }) => {
-        const start = format(
-          new Date(row.original.startDate),
-          "MMM d, yyyy"
-        );
+        const start = format(new Date(row.original.startDate), "MMM d, yyyy");
         const end = format(new Date(row.original.endDate), "MMM d, yyyy");
         return (
-          <span className="text-sm">
+          <span className="text-sm text-[#8a8578] tabular-nums">
             {start} — {end}
           </span>
         );
@@ -85,8 +85,8 @@ function makeColumns(
       accessorFn: (row) => `${row.city}, ${row.country}`,
       cell: ({ row }) => (
         <div>
-          <div>{row.original.city}</div>
-          <div className="text-xs text-muted-foreground">
+          <div className="text-[#d4c8b8]">{row.original.city}</div>
+          <div className="text-xs text-[#8a8578] mt-0.5">
             {row.original.country}
           </div>
         </div>
@@ -94,7 +94,12 @@ function makeColumns(
     },
     {
       accessorKey: "organization",
-      header: "Organization",
+      header: "Org",
+      cell: ({ row }) => (
+        <span className="text-sm text-[#8a8578]">
+          {row.original.organization || "—"}
+        </span>
+      ),
     },
     {
       accessorKey: "level",
@@ -103,29 +108,39 @@ function makeColumns(
         const level = row.original.level;
         if (!level) return null;
         return (
-          <Badge variant={levelColors[level] ?? "secondary"}>{level}</Badge>
+          <span
+            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${
+              levelColors[level] ?? levelColors.all
+            }`}
+          >
+            {level}
+          </span>
         );
       },
     },
     {
       accessorKey: "fee",
       header: "Fee",
+      cell: ({ row }) => (
+        <span className="text-sm text-[#b8960b] font-medium tabular-nums">
+          {row.original.fee || "—"}
+        </span>
+      ),
     },
     {
       id: "link",
-      header: "Link",
+      header: "",
       cell: ({ row }) => {
-        const url =
-          row.original.registrationUrl || row.original.sourceUrl;
+        const url = row.original.registrationUrl || row.original.sourceUrl;
         if (!url) return null;
         return (
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline hover:text-primary/80 text-sm"
+            className="text-[#c73e1d] hover:text-[#e04a2a] transition-colors inline-flex items-center gap-1 text-sm"
           >
-            View
+            <ExternalLink className="h-3.5 w-3.5" />
           </a>
         );
       },
@@ -134,23 +149,19 @@ function makeColumns(
       id: "actions",
       header: "",
       cell: ({ row }) => (
-        <div className="flex gap-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8"
+        <div className="flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <button
+            className="h-8 w-8 rounded-md flex items-center justify-center text-[#8a8578] hover:text-[#d4c8b8] hover:bg-[#1c1c24] transition-all"
             onClick={() => onEdit(row.original)}
           >
-            <Pencil className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 text-destructive hover:text-destructive"
+            <Pencil className="h-3.5 w-3.5" />
+          </button>
+          <button
+            className="h-8 w-8 rounded-md flex items-center justify-center text-[#8a8578] hover:text-[#c73e1d] hover:bg-[#2a1010] transition-all"
             onClick={() => onDelete(row.original)}
           >
-            <Trash2 className="h-4 w-4" />
-          </Button>
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
         </div>
       ),
     },
@@ -227,54 +238,71 @@ export default function SeminarTable() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12 text-muted-foreground">
-        Loading seminars...
+      <div className="flex items-center justify-center py-24">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-[#c73e1d] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-[#8a8578]">Loading seminars...</span>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center py-12 text-destructive">
-        Error: {error}
+      <div className="flex items-center justify-center py-24">
+        <div className="bg-[#2a1010] border border-[#3a1a1a] rounded-lg px-6 py-4 text-[#c73e1d]">
+          Error: {error}
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="mb-4 flex items-center justify-between">
-        <span className="text-sm text-muted-foreground">
-          {filtered.length} of {seminars.length} seminars
-        </span>
-        <Button onClick={handleAdd}>+ Add Seminar</Button>
+    <div className="animate-fade-in">
+      {/* Toolbar */}
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-baseline gap-3">
+          <span
+            className="text-2xl text-[#f5f0e8]"
+            style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}
+          >
+            Seminars
+          </span>
+          <span className="text-sm text-[#8a8578]">
+            {filtered.length} of {seminars.length}
+          </span>
+        </div>
+        <button
+          onClick={handleAdd}
+          className="flex items-center gap-2 px-4 py-2.5 bg-[#c73e1d] hover:bg-[#d44a28] text-[#f5f0e8] rounded-lg text-sm font-medium transition-all duration-200 shadow-lg shadow-[#c73e1d]/15 hover:shadow-[#c73e1d]/25"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Seminar
+        </button>
       </div>
-      <div className="rounded-md border">
+
+      {/* Table */}
+      <div className="rounded-lg border border-[#2a2a35] bg-[#16161e]/50 overflow-hidden">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="border-b border-[#2a2a35] hover:bg-transparent">
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className={
-                      header.column.getCanSort()
-                        ? "cursor-pointer select-none"
-                        : ""
-                    }
+                    className={`text-[10px] uppercase tracking-[0.15em] text-[#8a8578] font-semibold py-3 bg-[#12121a] ${
+                      header.column.getCanSort() ? "cursor-pointer select-none hover:text-[#d4c8b8]" : ""
+                    }`}
+                    style={{ fontFamily: "var(--font-body)" }}
                     onClick={header.column.getToggleSortingHandler()}
                   >
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                      {{
-                        asc: " \u2191",
-                        desc: " \u2193",
-                      }[header.column.getIsSorted() as string] ?? null}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                      {header.column.getIsSorted() === "asc" && <ArrowUp className="h-3 w-3 text-[#c73e1d]" />}
+                      {header.column.getIsSorted() === "desc" && <ArrowDown className="h-3 w-3 text-[#c73e1d]" />}
                     </div>
                   </TableHead>
                 ))}
@@ -283,14 +311,15 @@ export default function SeminarTable() {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+              table.getRowModel().rows.map((row, i) => (
+                <TableRow
+                  key={row.id}
+                  className="group border-b border-[#1c1c24] hover:bg-[#1a1a24] transition-colors duration-150 stagger-row"
+                  style={{ animationDelay: `${Math.min(i * 30, 300)}ms` }}
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                    <TableCell key={cell.id} className="py-3.5" style={{ fontFamily: "var(--font-body)" }}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -299,9 +328,14 @@ export default function SeminarTable() {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-32 text-center text-[#8a8578]"
                 >
-                  No seminars found.
+                  <div className="flex flex-col items-center gap-2">
+                    <span style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem" }}>
+                      No seminars found
+                    </span>
+                    <span className="text-xs">Try adjusting your filters</span>
+                  </div>
                 </TableCell>
               </TableRow>
             )}

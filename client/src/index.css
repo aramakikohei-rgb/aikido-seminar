@@ -5,28 +5,47 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Sumi-e Editorial Theme ─── */
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #737373;
-  --color-border: #e5e5e5;
-  --color-primary: #1d4ed8;
-  --color-primary-foreground: #ffffff;
-  --color-accent: #f0f9ff;
-  --color-accent-foreground: #1e40af;
-  --color-destructive: #ef4444;
-  --color-ring: #3b82f6;
+  --color-background: #0f0f14;
+  --color-foreground: #e8e0d4;
+  --color-muted: #1c1c24;
+  --color-muted-foreground: #8a8578;
+  --color-border: #2a2a35;
+  --color-primary: #c73e1d;
+  --color-primary-foreground: #f5f0e8;
+  --color-accent: #1a1a26;
+  --color-accent-foreground: #d4c8b8;
+  --color-destructive: #a83232;
+  --color-ring: #c73e1d;
+  --color-card: #16161e;
+  --color-card-foreground: #e8e0d4;
+  --color-popover: #1a1a24;
+  --color-popover-foreground: #e8e0d4;
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
+
+  /* Custom semantic colors */
+  --color-vermillion: #c73e1d;
+  --color-gold: #b8960b;
+  --color-paper: #f5f0e8;
+  --color-ink: #0f0f14;
+  --color-charcoal: #1c1c24;
+  --color-warm-gray: #8a8578;
+
+  /* Fonts */
+  --font-display: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  font-family: var(--font-body);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @theme inline {
@@ -71,72 +90,38 @@ body {
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --radius: 0.5rem;
+  --background: #0f0f14;
+  --foreground: #e8e0d4;
+  --card: #16161e;
+  --card-foreground: #e8e0d4;
+  --popover: #1a1a24;
+  --popover-foreground: #e8e0d4;
+  --primary: #c73e1d;
+  --primary-foreground: #f5f0e8;
+  --secondary: #1c1c24;
+  --secondary-foreground: #d4c8b8;
+  --muted: #1c1c24;
+  --muted-foreground: #8a8578;
+  --accent: #1a1a26;
+  --accent-foreground: #d4c8b8;
+  --destructive: #a83232;
+  --border: #2a2a35;
+  --input: #2a2a35;
+  --ring: #c73e1d;
+  --chart-1: #c73e1d;
+  --chart-2: #b8960b;
+  --chart-3: #3b6b4a;
+  --chart-4: #4a6fa5;
+  --chart-5: #8b6fa5;
+  --sidebar: #16161e;
+  --sidebar-foreground: #e8e0d4;
+  --sidebar-primary: #c73e1d;
+  --sidebar-primary-foreground: #f5f0e8;
+  --sidebar-accent: #1c1c24;
+  --sidebar-accent-foreground: #d4c8b8;
+  --sidebar-border: #2a2a35;
+  --sidebar-ring: #c73e1d;
 }
 
 @layer base {
@@ -149,6 +134,93 @@ body {
   }
 }
 
+/* ─── Paper grain texture overlay ─── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Animations ─── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes brush-stroke {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s ease-out both;
+}
+
+/* Staggered entrance for table rows */
+.stagger-row {
+  animation: fade-up 0.4s ease-out both;
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a35;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a45;
+}
+
+/* ─── Leaflet overrides (Sumi-e theme) ─── */
+
 /* Reset Tailwind's global border/outline styles inside Leaflet */
 .leaflet-container,
 .leaflet-container * {
@@ -160,33 +232,41 @@ body {
   border: none;
 }
 
-/* Clean popup styling */
+/* Dark popup styling */
 .leaflet-popup-content-wrapper {
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(199, 62, 29, 0.15);
   padding: 4px;
+  background: #16161e;
+  color: #e8e0d4;
 }
 
 .leaflet-popup-tip {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  background: #16161e;
 }
 
 .leaflet-popup-content {
-  margin: 8px 12px;
+  margin: 10px 14px;
+  font-family: "DM Sans", system-ui, sans-serif;
 }
 
-/* Clean zoom controls */
+.leaflet-popup-content a {
+  color: #c73e1d !important;
+}
+
+/* Themed zoom controls */
 .leaflet-control-zoom {
   border: none !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
   border-radius: 8px !important;
   overflow: hidden;
 }
 
 .leaflet-control-zoom a {
   border: none !important;
-  background-color: white;
-  color: #333;
+  background-color: #16161e;
+  color: #e8e0d4;
   width: 36px;
   height: 36px;
   line-height: 36px;
@@ -194,18 +274,24 @@ body {
 }
 
 .leaflet-control-zoom a:hover {
-  background-color: #f5f5f5;
+  background-color: #1c1c24;
+  color: #c73e1d;
 }
 
-/* Clean attribution */
+/* Attribution */
 .leaflet-control-attribution {
-  background: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(15, 15, 20, 0.8) !important;
   backdrop-filter: blur(4px);
   font-size: 10px;
   padding: 2px 6px;
+  color: #8a8578 !important;
 }
 
-/* Custom dot markers */
+.leaflet-control-attribution a {
+  color: #8a8578 !important;
+}
+
+/* Custom dot markers — vermillion */
 .seminar-marker {
   background: none !important;
   border: none !important;
@@ -214,37 +300,48 @@ body {
 .seminar-marker-dot {
   width: 14px;
   height: 14px;
-  background-color: #1d4ed8;
+  background-color: #c73e1d;
   border-radius: 50%;
-  border: 2.5px solid white;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  transition: transform 0.15s;
+  border: 2.5px solid #0f0f14;
+  box-shadow: 0 0 0 1px rgba(199, 62, 29, 0.4), 0 2px 8px rgba(199, 62, 29, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .seminar-marker:hover .seminar-marker-dot {
-  transform: scale(1.3);
+  transform: scale(1.4);
+  box-shadow: 0 0 0 2px rgba(199, 62, 29, 0.6), 0 4px 16px rgba(199, 62, 29, 0.5);
 }
 
-/* Cluster markers */
+/* Cluster markers — vermillion theme */
 .marker-cluster-small,
 .marker-cluster-medium,
 .marker-cluster-large {
-  background-color: rgba(29, 78, 216, 0.2) !important;
+  background-color: rgba(199, 62, 29, 0.15) !important;
   border-radius: 50%;
 }
 
 .marker-cluster-small div,
 .marker-cluster-medium div,
 .marker-cluster-large div {
-  background-color: rgba(29, 78, 216, 0.85);
-  color: white;
+  background-color: rgba(199, 62, 29, 0.85);
+  color: #f5f0e8;
   border-radius: 50%;
   font-weight: 600;
   font-size: 12px;
+  font-family: "DM Sans", system-ui, sans-serif;
   width: 30px;
   height: 30px;
   line-height: 30px;
   text-align: center;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+/* ─── Custom map tile darkness ─── */
+.leaflet-container {
+  background: #0f0f14;
+}
+
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(1.1) saturate(0.3);
 }

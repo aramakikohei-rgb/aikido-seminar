@@ -7,9 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
 import { useFilters } from "@/context/FilterContext";
 import { fetchCountries } from "@/lib/api";
+import { X, Search } from "lucide-react";
 
 export default function FilterBar({
   organizations,
@@ -28,82 +28,111 @@ export default function FilterBar({
   const hasActiveFilters = Object.values(filters).some((v) => v !== "");
 
   return (
-    <div className="grid grid-cols-5 items-end gap-3 mb-4">
-      <div className="grid gap-1">
-        <label className="text-xs text-muted-foreground">Country</label>
-        <Select
-          value={filters.country || "_all"}
-          onValueChange={(v) => setFilter("country", v === "_all" ? "" : v)}
+    <div className="mb-8 animate-fade-in">
+      {/* Section label */}
+      <div className="flex items-center gap-3 mb-3">
+        <span
+          className="text-xs uppercase tracking-[0.15em] text-[#8a8578] font-semibold"
+          style={{ fontFamily: "var(--font-body)" }}
         >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="All" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="_all">All</SelectItem>
-            {countries.map((c) => (
-              <SelectItem key={c.countryCode} value={c.countryCode}>
-                {c.country}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+          Filters
+        </span>
+        <div className="flex-1 h-[1px] bg-[#2a2a35]" />
+        {hasActiveFilters && (
+          <button
+            onClick={resetFilters}
+            className="flex items-center gap-1.5 text-xs text-[#c73e1d] hover:text-[#e04a2a] transition-colors font-medium"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            <X className="h-3 w-3" />
+            Clear all
+          </button>
+        )}
       </div>
 
-      <div className="grid gap-1">
-        <label className="text-xs text-muted-foreground">Organization</label>
-        <Select
-          value={filters.organization || "_all"}
-          onValueChange={(v) =>
-            setFilter("organization", v === "_all" ? "" : v)
-          }
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="All" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="_all">All</SelectItem>
-            {organizations.map((org) => (
-              <SelectItem key={org} value={org}>
-                {org}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+      {/* Filter controls */}
+      <div className="grid grid-cols-5 items-end gap-3">
+        <div className="grid gap-1.5">
+          <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578]" style={{ fontFamily: "var(--font-body)" }}>
+            Country
+          </label>
+          <Select
+            value={filters.country || "_all"}
+            onValueChange={(v) => setFilter("country", v === "_all" ? "" : v)}
+          >
+            <SelectTrigger className="w-full bg-[#16161e] border-[#2a2a35] text-[#d4c8b8] hover:border-[#3a3a45] transition-colors focus:ring-[#c73e1d]/30">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent className="bg-[#1a1a24] border-[#2a2a35] text-[#d4c8b8]">
+              <SelectItem value="_all">All</SelectItem>
+              {countries.map((c) => (
+                <SelectItem key={c.countryCode} value={c.countryCode}>
+                  {c.country}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
 
-      <div className="grid gap-1">
-        <label className="text-xs text-muted-foreground">Instructor</label>
-        <Input
-          placeholder="Search..."
-          value={filters.instructor}
-          onChange={(e) => setFilter("instructor", e.target.value)}
-        />
-      </div>
+        <div className="grid gap-1.5">
+          <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578]" style={{ fontFamily: "var(--font-body)" }}>
+            Organization
+          </label>
+          <Select
+            value={filters.organization || "_all"}
+            onValueChange={(v) => setFilter("organization", v === "_all" ? "" : v)}
+          >
+            <SelectTrigger className="w-full bg-[#16161e] border-[#2a2a35] text-[#d4c8b8] hover:border-[#3a3a45] transition-colors focus:ring-[#c73e1d]/30">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent className="bg-[#1a1a24] border-[#2a2a35] text-[#d4c8b8]">
+              <SelectItem value="_all">All</SelectItem>
+              {organizations.map((org) => (
+                <SelectItem key={org} value={org}>
+                  {org}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
 
-      <div className="grid gap-1">
-        <label className="text-xs text-muted-foreground">From</label>
-        <Input
-          type="date"
-          className="w-full"
-          value={filters.startDate}
-          onChange={(e) => setFilter("startDate", e.target.value)}
-        />
-      </div>
+        <div className="grid gap-1.5">
+          <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578]" style={{ fontFamily: "var(--font-body)" }}>
+            Instructor
+          </label>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#8a8578]" />
+            <Input
+              placeholder="Search..."
+              value={filters.instructor}
+              onChange={(e) => setFilter("instructor", e.target.value)}
+              className="pl-9 bg-[#16161e] border-[#2a2a35] text-[#d4c8b8] placeholder:text-[#555] hover:border-[#3a3a45] transition-colors focus:ring-[#c73e1d]/30"
+            />
+          </div>
+        </div>
 
-      <div className="grid gap-1 flex-row">
-        <label className="text-xs text-muted-foreground">To</label>
-        <div className="flex items-center gap-2">
+        <div className="grid gap-1.5">
+          <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578]" style={{ fontFamily: "var(--font-body)" }}>
+            From
+          </label>
           <Input
             type="date"
-            className="w-full"
+            className="w-full bg-[#16161e] border-[#2a2a35] text-[#d4c8b8] hover:border-[#3a3a45] transition-colors focus:ring-[#c73e1d]/30"
+            value={filters.startDate}
+            onChange={(e) => setFilter("startDate", e.target.value)}
+          />
+        </div>
+
+        <div className="grid gap-1.5">
+          <label className="text-[10px] uppercase tracking-[0.12em] text-[#8a8578]" style={{ fontFamily: "var(--font-body)" }}>
+            To
+          </label>
+          <Input
+            type="date"
+            className="w-full bg-[#16161e] border-[#2a2a35] text-[#d4c8b8] hover:border-[#3a3a45] transition-colors focus:ring-[#c73e1d]/30"
             value={filters.endDate}
             onChange={(e) => setFilter("endDate", e.target.value)}
           />
-          {hasActiveFilters && (
-            <Button variant="ghost" size="sm" onClick={resetFilters}>
-              Clear
-            </Button>
-          )}
         </div>
       </div>
     </div>

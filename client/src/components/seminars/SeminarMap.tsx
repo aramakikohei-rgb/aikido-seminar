@@ -16,7 +16,7 @@ import { useFilters } from "@/context/FilterContext";
 import { applyFilters } from "@/lib/filters";
 import FilterBar from "./FilterBar";
 import { organizations } from "@/lib/constants";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, SlidersHorizontal, ExternalLink } from "lucide-react";
 
 // Custom dot marker icon (no image dependencies)
 const dotIcon = L.divIcon({
@@ -55,8 +55,11 @@ export default function SeminarMap() {
 
   if (loading) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-gray-50">
-        Loading map...
+      <div className="absolute inset-0 flex items-center justify-center bg-[#0f0f14]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-[#c73e1d] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-[#8a8578]">Loading map...</span>
+        </div>
       </div>
     );
   }
@@ -88,33 +91,40 @@ export default function SeminarMap() {
               icon={dotIcon}
             >
               <Popup>
-                <div className="min-w-[220px] p-1">
-                  <h3 className="font-bold text-sm mb-1 leading-tight">
+                <div className="min-w-[240px] p-1">
+                  <h3
+                    className="font-bold text-sm mb-1.5 leading-tight text-[#f5f0e8]"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
                     {seminar.title}
                   </h3>
-                  <p className="text-xs text-gray-600 mb-1">
+                  <p className="text-xs text-[#8a8578] mb-1">
                     {seminar.instructor}
-                    {seminar.instructorRank && ` (${seminar.instructorRank})`}
+                    {seminar.instructorRank && (
+                      <span className="text-[#b8960b]"> ({seminar.instructorRank})</span>
+                    )}
                   </p>
-                  <p className="text-xs mb-1">
+                  <div className="h-[1px] bg-[#2a2a35] my-2" />
+                  <p className="text-xs text-[#d4c8b8] mb-1">
                     {format(new Date(seminar.startDate), "MMM d")} —{" "}
                     {format(new Date(seminar.endDate), "MMM d, yyyy")}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-[#8a8578]">
                     {seminar.venue && `${seminar.venue}, `}
                     {seminar.city}, {seminar.country}
                   </p>
                   {seminar.fee && (
-                    <p className="text-xs mt-1 font-medium">{seminar.fee}</p>
+                    <p className="text-xs mt-1.5 font-medium text-[#b8960b]">{seminar.fee}</p>
                   )}
                   {(seminar.registrationUrl || seminar.sourceUrl) && (
                     <a
                       href={seminar.registrationUrl || seminar.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-blue-600 underline mt-1 inline-block"
+                      className="text-xs text-[#c73e1d] hover:text-[#e04a2a] mt-2 inline-flex items-center gap-1 transition-colors"
                     >
                       More info
+                      <ExternalLink className="h-3 w-3" />
                     </a>
                   )}
                 </div>
@@ -125,33 +135,41 @@ export default function SeminarMap() {
       </MapContainer>
 
       {/* Floating filter panel */}
-      <div className="absolute top-3 left-3 z-[1000]">
+      <div className="absolute top-3 left-3 z-[1000] animate-slide-in-left">
         <button
           onClick={() => setFiltersOpen(!filtersOpen)}
-          className="bg-white shadow-lg rounded-lg px-4 py-2 text-sm font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors border border-gray-200"
+          className="bg-[#16161e]/95 backdrop-blur-md shadow-xl rounded-lg px-4 py-2.5 text-sm font-medium flex items-center gap-2 hover:bg-[#1c1c24] transition-all duration-200 border border-[#2a2a35] text-[#d4c8b8]"
+          style={{ fontFamily: "var(--font-body)" }}
         >
+          <SlidersHorizontal className="h-4 w-4 text-[#8a8578]" />
           Filters
           {hasActiveFilters && (
-            <span className="bg-foreground text-background text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="bg-[#c73e1d] text-[#f5f0e8] text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
               !
             </span>
           )}
           {filtersOpen ? (
-            <ChevronUp className="h-4 w-4" />
+            <ChevronUp className="h-4 w-4 text-[#8a8578]" />
           ) : (
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-4 w-4 text-[#8a8578]" />
           )}
         </button>
         {filtersOpen && (
-          <div className="mt-2 bg-white shadow-lg rounded-lg p-4 border border-gray-200 max-w-[90vw]">
+          <div className="mt-2 bg-[#16161e]/95 backdrop-blur-md shadow-xl rounded-lg p-5 border border-[#2a2a35] max-w-[90vw] animate-fade-up">
             <FilterBar organizations={organizations} />
           </div>
         )}
       </div>
 
       {/* Seminar count badge */}
-      <div className="absolute bottom-4 left-3 z-[1000] bg-white/90 backdrop-blur-sm shadow-md rounded-lg px-3 py-1.5 text-xs text-muted-foreground border border-gray-200">
-        {filtered.length} of {seminars.length} seminars
+      <div
+        className="absolute bottom-4 left-3 z-[1000] bg-[#16161e]/90 backdrop-blur-md shadow-lg rounded-lg px-4 py-2 text-xs border border-[#2a2a35] flex items-center gap-2"
+        style={{ fontFamily: "var(--font-body)" }}
+      >
+        <div className="w-2 h-2 rounded-full bg-[#c73e1d] animate-pulse" />
+        <span className="text-[#8a8578]">
+          <span className="text-[#d4c8b8] font-medium">{filtered.length}</span> of {seminars.length} seminars
+        </span>
       </div>
     </div>
   );
